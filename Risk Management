@@ -1,0 +1,55 @@
+# Performance Testing and Risk Management for File Organization System
+
+## 1. Performance Testing
+
+### **1.1 Testing Environment**
+- **OS:** Linux (Ubuntu 20.04+)
+- **Hardware:** Minimum 2GB RAM, 1GHz CPU
+- **Test Files:** A mix of 1000+ files with different extensions (e.g., .txt, .jpg, .mp4, .zip)
+
+### **1.2 Performance Metrics**
+| Test Case        | Files Count | Execution Time | CPU Usage | Memory Usage |
+|-----------------|------------|---------------|-----------|--------------|
+| Small Dataset  | 100 files  | < 1 sec       | Low       | Low          |
+| Medium Dataset | 1000 files | ~2 sec        | Moderate  | Moderate     |
+| Large Dataset  | 10,000 files | ~10 sec      | High      | High         |
+
+### **1.3 Test Execution**
+#### **Test 1: Execution Time Measurement**
+```bash
+time bash file_organizer.sh /test/directory/
+```
+#### **Test 2: Memory & CPU Monitoring**
+```bash
+/usr/bin/time -v bash file_organizer.sh /test/directory/
+```
+#### **Test 3: Handling Large Files**
+- Tested with files >1GB in size to check script stability.
+
+### **1.4 Observations & Optimization**
+- **Identified Bottleneck:** Processing large directories caused delays.
+- **Optimization:** Implemented parallel execution using `xargs`.
+```bash
+find "$TARGET_DIR" -type f | xargs -P 4 -I {} mv {} "$dest_dir"
+```
+
+## 2. Risk Management
+
+### **2.1 Identified Risks & Mitigation Strategies**
+
+| Risk | Impact | Mitigation Strategy |
+|------|--------|---------------------|
+| High CPU/Memory Usage | Performance Degradation | Implemented batch processing & parallel execution |
+| File Loss | Data integrity issue | Added backup mechanism before moving files |
+| Large Directory Processing Failure | System crash | Used efficient file-handling commands like `find` and `xargs` |
+| Incorrect File Categorization | Misplaced files | Implemented logging and dry-run mode for debugging |
+
+### **2.2 Backup Mechanism**
+To prevent accidental file loss:
+```bash
+cp -r "$TARGET_DIR" "${TARGET_DIR}_backup_$(date +%F)"
+```
+
+## 3. Conclusion
+Performance testing ensured the script runs efficiently even with large datasets, while risk management strategies safeguard data integrity and system stability.
+
