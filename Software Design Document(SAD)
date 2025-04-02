@@ -1,0 +1,64 @@
+# Software Architecture Document (SAD) for File Organization System
+
+## 1. Introduction
+**Objective:**
+The File Organization System is a Linux-based automation tool designed to efficiently sort files into categorized directories based on their extensions. This improves file management and retrieval while adhering to software engineering principles.
+
+## 2. Software Design Principles Applied
+
+### **Abstraction**
+- The system abstracts the file organization task into a high-level function that handles directory creation and file movement.
+
+### **Encapsulation**
+- Functions such as `create_directory` and `organize_files` encapsulate specific functionalities, making the script modular and maintainable.
+
+### **Modularity**
+- The script is divided into distinct functions:
+  - `create_directory()`: Ensures directories exist before moving files.
+  - `organize_files()`: Iterates through files and moves them based on their extensions.
+  
+### **Cohesion & Coupling**
+- High cohesion: Each function performs a single well-defined task.
+- Low coupling: The functions operate independently and communicate through well-defined parameters.
+
+## 3. System Architecture
+
+### **3.1 Data Flow Diagram (DFD)**
+#### **Level 0 DFD:**
+```
+User Input (Directory Path) → File Organizer Script → Sorts Files → Stores in Categorized Directories
+```
+#### **Level 1 DFD:**
+1. User provides a target directory.
+2. The script scans for files in the directory.
+3. Based on file extensions, appropriate directories are created.
+4. Files are moved to respective directories.
+5. A log file (`file_organizer.log`) records actions taken.
+
+### **3.2 Class Diagram (If Using Python)**
+If implemented in Python using OOP:
+- **Class: FileOrganizer**
+  - `scan_directory()`
+  - `create_directory()`
+  - `move_files()`
+
+## 4. Deployment Design
+### **Installation Instructions:**
+1. Ensure Bash is installed on the system.
+2. Copy the script (`file_organizer.sh`) to a preferred directory.
+3. Provide execute permission:  
+   ```bash
+   chmod +x file_organizer.sh
+   ```
+4. Run the script with the target directory:  
+   ```bash
+   ./file_organizer.sh /path/to/directory
+   ```
+
+### **Dependencies:**
+- Bash Shell
+- Linux Utilities (`mkdir`, `mv`, `tee` for logging)
+
+## 5. Conclusion
+This File Organization System demonstrates key software engineering principles by creating a structured, modular, and maintainable automation script that improves file management efficiency in Linux environments.
+
