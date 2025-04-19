@@ -55,5 +55,5 @@ For detailed architecture, design principles, and SCM implementation, refer to t
 This project is licensed under the MIT License.
 
 ## Contact
-For any issues, contact **[Your Name]** at **sampoorn2005@gmail.com**.
+Team Members 1)Thakur Digvijay Singh - 23BCS11888 2)Mayank - 23BCS13014 3)Paras - 23BCS11281 4)Shashi Bhushan Thakur - 23BCS10663 5)Kishan - 23BCS10777
 
